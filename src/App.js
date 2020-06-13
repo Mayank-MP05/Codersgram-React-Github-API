@@ -1,17 +1,11 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-/*
-function App() {
-  return (
-    <div className='container'>
-
-    </div>
-  );
-}
-
-export default App;
-*/
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+
+// Importing Pages
+import Feed from "./pages/Feed";
+import Profile from "./pages/Profile";
+import Search from "./pages/Search";
 
 export default function App() {
   return (
@@ -23,10 +17,10 @@ export default function App() {
               <Link to='/'>Feed</Link>
             </li>
             <li>
-              <Link to='/about'>Create post</Link>
+              <Link to='/search'>Search</Link>
             </li>
             <li>
-              <Link to='/users'>User</Link>
+              <Link to='/profile'>Profile</Link>
             </li>
           </ul>
         </nav>
@@ -34,29 +28,30 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path='/about'>
-            <About />
+          <Route path='/profile'>
+            <Profile />
           </Route>
-          <Route path='/users'>
-            <Users />
+          <Route path='/search'>
+            <Search />
           </Route>
           <Route path='/'>
-            <Home />
+            <Feed />
           </Route>
         </Switch>
       </div>
     </Router>
   );
 }
-
-function Home() {
-  return <h2>Home</h2>;
+/*
+function Feed() {
+  return <h2>Feed Page</h2>;
 }
 
-function About() {
-  return <h2>About</h2>;
+function Search() {
+  return <h2>Search Page</h2>;
 }
 
-function Users() {
-  return <h2>Users</h2>;
+function Profile() {
+  return <h2>Profile Page</h2>;
 }
+*/
