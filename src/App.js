@@ -42,16 +42,3 @@ export default function App() {
     </Router>
   );
 }
-/*
-function Feed() {
-  return <h2>Feed Page</h2>;
-}
-
-function Search() {
-  return <h2>Search Page</h2>;
-}
-
-function Profile() {
-  return <h2>Profile Page</h2>;
-}
-*/
