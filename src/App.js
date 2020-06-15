@@ -13,7 +13,10 @@ import Repos from "./pages/Repos";
 
 // Components Import
 import Biocard from "./components/Biocard";
+import Userdashboard from "./layouts/Userdashboard";
 
+//Full Page Layouts Imports
+import Userdashboard from "./layouts/Userdashboard";
 export default class App extends React.Component {
   state = {
     user: "",
@@ -38,12 +41,12 @@ export default class App extends React.Component {
                 onChange={this.onUserChange}
                 className='form-control mr-sm-2'
                 type='search'
-                placeholder='Search'
+                placeholder='Username...'
                 aria-label='Search'
               />
-              <a href={`./${this.state.user}`}>
+              <a href={`/${this.state.user}`}>
                 <button className='btn btn-outline-success my-2 my-sm-0'>
-                  Search
+                  Get User
                 </button>
               </a>
             </div>
@@ -105,7 +108,7 @@ export default class App extends React.Component {
             </Route>
             <Route
               path='/:username'
-              render={(props) => <Start {...this.props} />}
+              render={(props) => <Userdashboard {...this.props} />}
             />
 
             <Route
