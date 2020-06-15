@@ -3,7 +3,7 @@ import React from "react";
 class Singlerepo extends React.Component {
   render() {
     return (
-      <div className='card'>
+      <div className='card m-1'>
         <div className='card-header'>Repository Name ...</div>
         <div className='card-body'>
           <p className='card-text'>

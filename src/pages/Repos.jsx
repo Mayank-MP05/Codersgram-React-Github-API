@@ -6,7 +6,7 @@ class Repos extends React.Component {
   render() {
     return (
       <div className='container'>
-        <h3>Repositories by Mayank_MP5</h3>
+        <h3 className='m-3'>Repositories by Mayank_MP5</h3>
         <Singlerepo />
         <Singlerepo />
         <Singlerepo />

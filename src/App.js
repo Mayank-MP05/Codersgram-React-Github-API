@@ -67,7 +67,7 @@ export default class App extends React.Component {
             renders the first one that matches the current URL. */}
 
           <Switch>
-            <Route path='/'>
+            <Route exact path='/'>
               <div className='container'>
                 <div className='row'>
                   <div className='col-4'>
@@ -80,10 +80,28 @@ export default class App extends React.Component {
               </div>
             </Route>
             <Route path='/followers'>
-              <Followers />
+              <div className='container'>
+                <div className='row'>
+                  <div className='col-4'>
+                    <Biocard />
+                  </div>
+                  <div className='col-8'>
+                    <Followers />
+                  </div>
+                </div>
+              </div>
             </Route>
             <Route path='/following'>
-              <Following />
+              <div className='container'>
+                <div className='row'>
+                  <div className='col-4'>
+                    <Biocard />
+                  </div>
+                  <div className='col-8'>
+                    <Following />
+                  </div>
+                </div>
+              </div>
             </Route>
             <Route
               path='/:username'
