@@ -2,7 +2,8 @@ import React from "react";
 
 class Start extends React.Component {
   render() {
-    return <h1>Start Page</h1>;
+    console.log(this.props);
+    return <h1>Start Page : </h1>;
   }
 }
 

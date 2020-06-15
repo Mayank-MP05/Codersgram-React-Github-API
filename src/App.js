@@ -6,11 +6,49 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Search from "./pages/Search";
+import Start from "./pages/Start";
+import Followers from "./pages/Followers";
+import Following from "./pages/Following";
+import Repos from "./pages/Repos";
 
-export default function App() {
-  return (
-    <Router>
-      <div>
+// Components Import
+import Biocard from "./components/Biocard";
+
+export default class App extends React.Component {
+  state = {
+    user: "",
+  };
+
+  onUserChange = (e) => {
+    let val = e.target.value;
+    console.log(val);
+    this.setState({
+      user: val,
+    });
+  };
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <nav className='navbar navbar-light bg-light justify-content-between'>
+            <a className='navbar-brand'>Navbar</a>
+            <form className='form-inline'>
+              <input
+                onChange={this.onUserChange}
+                className='form-control mr-sm-2'
+                type='search'
+                placeholder='Search'
+                aria-label='Search'
+              />
+              <button
+                className='btn btn-outline-success my-2 my-sm-0'
+                type='submit'>
+                Search
+              </button>
+            </form>
+          </nav>
+          {/*
         <nav>
           <ul>
             <li>
@@ -27,18 +65,43 @@ export default function App() {
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path='/profile'>
-            <Profile />
-          </Route>
-          <Route path='/search'>
-            <Search />
-          </Route>
-          <Route path='/'>
-            <Feed />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+
+          <Switch>
+            <Route path='/'>
+              <div className='container'>
+                <div className='row'>
+                  <div className='col-4'>
+                    <Biocard />
+                  </div>
+                  <div className='col-8'>
+                    <Repos />
+                  </div>
+                </div>
+              </div>
+            </Route>
+            <Route path='/followers'>
+              <Followers />
+            </Route>
+            <Route path='/following'>
+              <Following />
+            </Route>
+            <Route
+              path='/:username'
+              render={(props) => <Start {...this.props} />}
+            />
+
+            <Route
+              path='/:username/followers'
+              render={(props) => <Start {...this.props} />}
+            />
+
+            <Route
+              path='/:username/following'
+              render={(props) => <Start {...this.props} />}
+            />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
