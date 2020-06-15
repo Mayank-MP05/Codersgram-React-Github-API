@@ -32,8 +32,8 @@ export default class App extends React.Component {
       <Router>
         <div>
           <nav className='navbar navbar-light bg-light justify-content-between'>
-            <a className='navbar-brand'>Navbar</a>
-            <form className='form-inline'>
+            <a className='navbar-brand'>Github's Codersgram</a>
+            <div className='form-inline'>
               <input
                 onChange={this.onUserChange}
                 className='form-control mr-sm-2'
@@ -41,12 +41,12 @@ export default class App extends React.Component {
                 placeholder='Search'
                 aria-label='Search'
               />
-              <button
-                className='btn btn-outline-success my-2 my-sm-0'
-                type='submit'>
-                Search
-              </button>
-            </form>
+              <a href={`./${this.state.user}`}>
+                <button className='btn btn-outline-success my-2 my-sm-0'>
+                  Search
+                </button>
+              </a>
+            </div>
           </nav>
           {/*
         <nav>
