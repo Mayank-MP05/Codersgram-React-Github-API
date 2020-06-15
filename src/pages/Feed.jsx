@@ -1,9 +1,13 @@
 import React from "react";
 
+import Navheader from "./../components/Navheader";
+import Navfooter from "./../components/Navfooter";
+
 class Feed extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Navheader />
         <div className='card'>
           <div className='card-header'>Featured</div>
           <div className='card-body'>
@@ -56,6 +60,7 @@ class Feed extends React.Component {
             </a>
           </div>
         </div>
+        <Navfooter />
       </React.Fragment>
     );
   }
