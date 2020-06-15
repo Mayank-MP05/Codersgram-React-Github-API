@@ -1,11 +1,9 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import axios from "axios";
 
 // Importing Pages
-import Feed from "./pages/Feed";
-import Profile from "./pages/Profile";
-import Search from "./pages/Search";
 import Start from "./pages/Start";
 import Followers from "./pages/Followers";
 import Following from "./pages/Following";
@@ -13,21 +11,71 @@ import Repos from "./pages/Repos";
 
 // Components Import
 import Biocard from "./components/Biocard";
-import Userdashboard from "./layouts/Userdashboard";
 
 //Full Page Layouts Imports
 import Userdashboard from "./layouts/Userdashboard";
+import Userfollowing from "./layouts/Userfollowing";
+import Userfollowers from "./layouts/Userfollowers";
+
 export default class App extends React.Component {
   state = {
     user: "",
+    UnstableUser: "",
+    status: "Get User Data",
+    profileData: {},
+    reposData: {},
+    followersData: {},
+    followingData: {},
   };
 
   onUserChange = (e) => {
     let val = e.target.value;
-    console.log(val);
+    let old = this.state;
+    old.UnstableUser = val;
+    this.setState(old);
+  };
+
+  setUser = () => {
+    let old = this.state;
+    console.log("Setuser Called");
     this.setState({
-      user: val,
+      user: old.UnstableUser,
+      UnstableUser: "",
+      status: "Redirect to User",
     });
+    this.getAllData();
+  };
+
+  getAllData = () => {
+    let old = this.state;
+    console.log("GetAllData Called");
+
+    // User Profile Data
+    let url = "https://api.github.com/users/Mayank-MP05";
+    axios.get(url).then((res) => {
+      old.profileData = res.data;
+      console.log(old.profileData);
+    });
+    // User Repos Data
+    axios.get(url + "/repos").then((res) => {
+      old.reposData = res.data;
+      console.log(old.reposData);
+    });
+    // User Followerz Data
+    axios.get(url + "/followers").then((res) => {
+      old.followersData = res.data;
+      console.log(old.followersData);
+    });
+    // User Following Data
+    axios.get(url + "/following").then((res) => {
+      old.followingData = res.data;
+      console.log(old.followingData);
+    });
+    console.log("GetAllData Finish");
+    setTimeout(() => {
+      console.log("State Settled All...");
+      this.setState(old);
+    }, 3000);
   };
 
   render() {
@@ -44,11 +92,13 @@ export default class App extends React.Component {
                 placeholder='Username...'
                 aria-label='Search'
               />
-              <a href={`/${this.state.user}`}>
-                <button className='btn btn-outline-success my-2 my-sm-0'>
-                  Get User
+              <Link to={`/${this.state.user}`}>
+                <button
+                  className='btn btn-outline-success my-2 my-sm-0'
+                  onClick={this.setUser}>
+                  {this.state.status}
                 </button>
-              </a>
+              </Link>
             </div>
           </nav>
           {/*
@@ -107,19 +157,32 @@ export default class App extends React.Component {
               </div>
             </Route>
             <Route
+              exact
               path='/:username'
-              render={(props) => <Userdashboard {...this.props} />}
+              render={(props) => (
+                <Userdashboard {...this.props} user={this.state.user} />
+              )}
             />
 
             <Route
+              exact
               path='/:username/followers'
-              render={(props) => <Start {...this.props} />}
+              render={(props) => (
+                <Userfollowers {...this.props} user={this.state.user} />
+              )}
             />
 
             <Route
+              exact
               path='/:username/following'
-              render={(props) => <Start {...this.props} />}
+              render={(props) => (
+                <Userfollowing {...this.props} user={this.state.user} />
+              )}
             />
+
+            <Route path='/'>
+              <h4>404 Page Not Found</h4>
+            </Route>
           </Switch>
         </div>
       </Router>

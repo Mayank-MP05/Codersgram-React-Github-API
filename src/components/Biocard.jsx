@@ -25,7 +25,7 @@ class Biocard extends React.Component {
             non quia possimus quibusdam rem quaerat, culpa modi?
           </p>
         </div>
-        <div class='card-footer'>Account Creation Date</div>
+        <div className='card-footer'>Account Creation Date</div>
       </div>
     );
   }
