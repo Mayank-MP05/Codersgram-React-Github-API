@@ -168,7 +168,6 @@ export default class App extends React.Component {
               render={(props) => (
                 <Userfollowers
                   {...this.props}
-                  user={this.state.user}
                   userData={this.state.profileData}
                   followersData={this.state.followersData}
                 />
@@ -181,7 +180,6 @@ export default class App extends React.Component {
               render={(props) => (
                 <Userfollowing
                   {...this.props}
-                  user={this.state.user}
                   userData={this.state.profileData}
                   followingData={this.state.followingData}
                 />

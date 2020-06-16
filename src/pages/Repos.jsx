@@ -11,7 +11,7 @@ class Repos extends React.Component {
         signal = true;
       }
     }
-    console.log(repoList);
+    //console.log(repoList);
     return (
       <div className='container'>
         <h3 className='m-3'>Repositories List :</h3>

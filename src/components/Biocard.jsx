@@ -11,10 +11,12 @@ class Biocard extends React.Component {
           alt='Card image cap'
         />
         <div className='card-body'>
-          <a href='./followers' className='btn btn-success m-3'>
+          <a
+            href={`./${profile.login}/followers`}
+            className='btn btn-success m-3'>
             Followers | {profile.followers}
           </a>
-          <a href='./following' className='btn btn-danger'>
+          <a href={`./${profile.login}/following`} className='btn btn-danger'>
             Followings | {profile.following}
           </a>
           <h5 className='card-title'>Name : {profile.name}</h5>

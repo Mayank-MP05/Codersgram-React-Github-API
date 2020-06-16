@@ -3,14 +3,23 @@ import Personcard from "./../components/Personcard";
 
 class Followers extends React.Component {
   render() {
+    let f_ersData = this.props.followersData;
+    let signal = false;
+    if (f_ersData !== undefined) {
+      if (Array.isArray(f_ersData)) {
+        signal = true;
+      }
+    }
+    //console.log(repoList);
     return (
       <div className='container'>
-        <h3 className='m-3'>Mayank Followers :</h3>
+        <h3 className='m-3'>Followers :</h3>
         <div className='row'>
-          <Personcard />
-          <Personcard />
-          <Personcard />
-          <Personcard />
+          {signal ? (
+            f_ersData.map((fer) => <Personcard personData={fer} />)
+          ) : (
+            <h6>Followers Loading...</h6>
+          )}
         </div>
       </div>
     );
