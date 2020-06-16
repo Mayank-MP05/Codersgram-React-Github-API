@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import axios from "axios";
 
 // Importing Pages
-import Start from "./pages/Start";
 import Followers from "./pages/Followers";
 import Following from "./pages/Following";
 import Repos from "./pages/Repos";
@@ -95,23 +94,6 @@ export default class App extends React.Component {
               </Link>
             </div>
           </nav>
-          {/*
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'>Feed</Link>
-            </li>
-            <li>
-              <Link to='/search'>Search</Link>
-            </li>
-            <li>
-              <Link to='/profile'>Profile</Link>
-            </li>
-          </ul>
-        </nav>
-
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
 
           <Switch>
             <Route exact path='/'>
