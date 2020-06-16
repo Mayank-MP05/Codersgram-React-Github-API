@@ -38,7 +38,7 @@ export default class App extends React.Component {
     let old = this.state;
     old.user = old.UnstableUser;
     old.UnstableUser = "";
-    console.log("Setuser Called");
+    //console.log("Setuser Called");
     this.setState(old);
     this.getAllData();
   };
@@ -138,7 +138,7 @@ export default class App extends React.Component {
               path='/:username/followers'
               render={(props) => (
                 <Userfollowers
-                  {...this.props}
+                  route={props}
                   userData={this.state.profileData}
                   followersData={this.state.followersData}
                 />
@@ -150,7 +150,7 @@ export default class App extends React.Component {
               path='/:username/following'
               render={(props) => (
                 <Userfollowing
-                  {...this.props}
+                  route={props}
                   userData={this.state.profileData}
                   followingData={this.state.followingData}
                 />
@@ -161,7 +161,7 @@ export default class App extends React.Component {
               path='/:username'
               render={(props) => (
                 <Userdashboard
-                  {...this.props}
+                  route={props}
                   userData={this.state.profileData}
                   reposData={this.state.reposData}
                 />

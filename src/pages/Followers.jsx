@@ -16,7 +16,9 @@ class Followers extends React.Component {
         <h3 className='m-3'>Followers :</h3>
         <div className='row'>
           {signal ? (
-            f_ersData.map((fer) => <Personcard personData={fer} />)
+            f_ersData.map((fer) => (
+              <Personcard key={fer.node_id} personData={fer} />
+            ))
           ) : (
             <h6>Followers Loading...</h6>
           )}

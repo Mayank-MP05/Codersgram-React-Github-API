@@ -16,7 +16,9 @@ class Repos extends React.Component {
       <div className='container'>
         <h3 className='m-3'>Repositories List :</h3>
         {signal ? (
-          repoList.map((repo) => <Singlerepo repoDetails={repo} />)
+          repoList.map((repo) => (
+            <Singlerepo key={repo.node_id} repoDetails={repo} />
+          ))
         ) : (
           <h5>Repositories Loading ...</h5>
         )}

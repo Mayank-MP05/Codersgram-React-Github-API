@@ -15,7 +15,9 @@ class Following extends React.Component {
         <h3 className='m-3'>Following :</h3>
         <div className='row'>
           {signal ? (
-            f_wingData.map((fer) => <Personcard personData={fer} />)
+            f_wingData.map((fer) => (
+              <Personcard key={fer.node_id} personData={fer} />
+            ))
           ) : (
             <h6>Following Loading...</h6>
           )}
