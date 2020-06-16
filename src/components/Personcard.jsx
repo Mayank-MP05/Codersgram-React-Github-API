@@ -1,10 +1,11 @@
 import React from "react";
-
+import Link from "react-router-dom";
+import "./personcard.css";
 class Personcard extends React.Component {
   render() {
     let person = this.props.personData;
     return person ? (
-      <div className='card m-1 w-25'>
+      <div className='card m-1 w-30'>
         <img
           className='card-img-top'
           src={person.avatar_url}
@@ -12,9 +13,9 @@ class Personcard extends React.Component {
         />
         <div className='card-body'>
           <h5 className='card-title'>@{person.login}</h5>
-          <a href={person.html_url} className='btn btn-primary'>
+          <Link to={`/${person.login}`} className='btn btn-primary'>
             {person.html_url}
-          </a>
+          </Link>
         </div>
       </div>
     ) : (

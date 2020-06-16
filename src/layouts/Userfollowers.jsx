@@ -1,5 +1,6 @@
 import React from "react";
 import Followers from "../pages/Followers";
+import Biocard from "./../components/Biocard";
 
 class Userfollowers extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class Userfollowers extends React.Component {
             <Biocard userData={this.props.userData} />
           </div>
           <div className='col-8'>
-            <Followers reposData={this.props.followersData} />
+            <Followers followersData={this.props.followersData} />
           </div>
         </div>
       </div>

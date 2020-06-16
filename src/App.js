@@ -150,17 +150,6 @@ export default class App extends React.Component {
                 </div>
               </div>
             </Route>
-            <Route
-              exact
-              path='/:username'
-              render={(props) => (
-                <Userdashboard
-                  {...this.props}
-                  userData={this.state.profileData}
-                  reposData={this.state.reposData}
-                />
-              )}
-            />
 
             <Route
               exact
@@ -185,7 +174,17 @@ export default class App extends React.Component {
                 />
               )}
             />
-
+            <Route
+              exact
+              path='/:username'
+              render={(props) => (
+                <Userdashboard
+                  {...this.props}
+                  userData={this.state.profileData}
+                  reposData={this.state.reposData}
+                />
+              )}
+            />
             <Route path='/'>
               <h4>404 Page Not Found</h4>
             </Route>

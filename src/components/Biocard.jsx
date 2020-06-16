@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Biocard extends React.Component {
   render() {
@@ -11,14 +12,14 @@ class Biocard extends React.Component {
           alt='Card image cap'
         />
         <div className='card-body'>
-          <a
-            href={`./${profile.login}/followers`}
+          <Link
+            to={`/${profile.login}/followers`}
             className='btn btn-success m-3'>
             Followers | {profile.followers}
-          </a>
-          <a href={`./${profile.login}/following`} className='btn btn-danger'>
+          </Link>
+          <Link to={`/${profile.login}/following`} className='btn btn-danger'>
             Followings | {profile.following}
-          </a>
+          </Link>
           <h5 className='card-title'>Name : {profile.name}</h5>
           <h6 className='card-title'>Username : @{profile.login}</h6>
           <p className='card-text'>{profile.bio}</p>
