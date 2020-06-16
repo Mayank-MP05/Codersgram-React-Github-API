@@ -2,31 +2,31 @@ import React from "react";
 
 class Biocard extends React.Component {
   render() {
-    return (
+    let profile = this.props.userData;
+    return profile ? (
       <div className='card'>
         <img
           className='card-img-top'
-          src='http://via.placeholder.com/300'
+          src={profile.avatar_url}
           alt='Card image cap'
         />
         <div className='card-body'>
           <a href='./followers' className='btn btn-success m-3'>
-            Followers | 10
+            Followers | {profile.followers}
           </a>
           <a href='./following' className='btn btn-danger'>
-            Followings | 40
+            Followings | {profile.following}
           </a>
-          <h5 className='card-title'>Name : Mayank Pachpande</h5>
-          <h6 className='card-title'>Username : @username</h6>
-          <p className='card-text'>
-            BIO : Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur, laudantium quae officiis commodi suscipit laborum
-            ipsum veritatis aspernatur blanditiis perspiciatis, reiciendis ad
-            non quia possimus quibusdam rem quaerat, culpa modi?
-          </p>
+          <h5 className='card-title'>Name : {profile.name}</h5>
+          <h6 className='card-title'>Username : @{profile.login}</h6>
+          <p className='card-text'>{profile.bio}</p>
         </div>
-        <div className='card-footer'>Account Creation Date</div>
+        <div className='card-footer'>
+          Account Creation : {profile.created_at}
+        </div>
       </div>
+    ) : (
+      <div className='card'>Profile Loading ...</div>
     );
   }
 }

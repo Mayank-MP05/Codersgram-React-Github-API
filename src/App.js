@@ -37,43 +37,38 @@ export default class App extends React.Component {
 
   setUser = () => {
     let old = this.state;
+    old.user = old.UnstableUser;
+    old.UnstableUser = "";
     console.log("Setuser Called");
-    this.setState({
-      user: old.UnstableUser,
-      UnstableUser: "",
-      status: "Redirect to User",
-    });
+    this.setState(old);
     this.getAllData();
   };
 
   getAllData = () => {
     let old = this.state;
-    console.log("GetAllData Called");
+    old.status = "Downloading ...";
+    this.setState(old);
 
     // User Profile Data
     let url = "https://api.github.com/users/Mayank-MP05";
     axios.get(url).then((res) => {
       old.profileData = res.data;
-      console.log(old.profileData);
     });
     // User Repos Data
     axios.get(url + "/repos").then((res) => {
       old.reposData = res.data;
-      console.log(old.reposData);
     });
     // User Followerz Data
     axios.get(url + "/followers").then((res) => {
       old.followersData = res.data;
-      console.log(old.followersData);
     });
     // User Following Data
     axios.get(url + "/following").then((res) => {
       old.followingData = res.data;
-      console.log(old.followingData);
     });
-    console.log("GetAllData Finish");
+
     setTimeout(() => {
-      console.log("State Settled All...");
+      old.status = "Redirect";
       this.setState(old);
     }, 3000);
   };
@@ -92,12 +87,11 @@ export default class App extends React.Component {
                 placeholder='Username...'
                 aria-label='Search'
               />
-              <Link to={`/${this.state.user}`}>
-                <button
-                  className='btn btn-outline-success my-2 my-sm-0'
-                  onClick={this.setUser}>
-                  {this.state.status}
-                </button>
+              <Link
+                to={`/${this.state.user}`}
+                className='btn btn-outline-success my-2 my-sm-0'
+                onClick={this.setUser}>
+                {this.state.status}
               </Link>
             </div>
           </nav>
@@ -160,7 +154,11 @@ export default class App extends React.Component {
               exact
               path='/:username'
               render={(props) => (
-                <Userdashboard {...this.props} user={this.state.user} />
+                <Userdashboard
+                  {...this.props}
+                  userData={this.state.profileData}
+                  reposData={this.state.reposData}
+                />
               )}
             />
 
@@ -168,7 +166,12 @@ export default class App extends React.Component {
               exact
               path='/:username/followers'
               render={(props) => (
-                <Userfollowers {...this.props} user={this.state.user} />
+                <Userfollowers
+                  {...this.props}
+                  user={this.state.user}
+                  userData={this.state.profileData}
+                  followersData={this.state.followersData}
+                />
               )}
             />
 
@@ -176,7 +179,12 @@ export default class App extends React.Component {
               exact
               path='/:username/following'
               render={(props) => (
-                <Userfollowing {...this.props} user={this.state.user} />
+                <Userfollowing
+                  {...this.props}
+                  user={this.state.user}
+                  userData={this.state.profileData}
+                  followingData={this.state.followingData}
+                />
               )}
             />
 

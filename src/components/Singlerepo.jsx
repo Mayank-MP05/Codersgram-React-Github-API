@@ -2,24 +2,32 @@ import React from "react";
 
 class Singlerepo extends React.Component {
   render() {
-    return (
+    let repo = this.props.repoDetails;
+    return repo ? (
       <div className='card m-1'>
-        <div className='card-header'>Repository Name ...</div>
+        <div className='card-header'>{repo.name}</div>
         <div className='card-body'>
           <p className='card-text'>
-            Repo Descritpiition : Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Commodi quisquam eius omnis odit tempore
-            praesentium cupiditate iusto dicta expedita, amet temporibus dolores
-            numquam eligendi delectus.
+            <strong>Repo Descritpiition :</strong> {repo.description}
           </p>
           <div className='row'>
-            <span className='w-25 mx-3'>Size : 56562 Bytes</span>
-            <span className='w-25'>Language : Python</span>
+            <span className='w-25 mx-3'>
+              <strong>Size :</strong> {repo.size} Bytes
+            </span>
+            <span className='w-25'>
+              <strong>Language :</strong> {repo.language}
+            </span>
           </div>
         </div>
         <div className='card-footer d-flex'>
-          <p>Created At : Date/sdfs/f/sfs/f/sd</p>
+          <p>
+            <strong>Created At :</strong> {repo.created_at}
+          </p>
         </div>
+      </div>
+    ) : (
+      <div className='card m-1'>
+        <h6>Repocard Loading ...</h6>
       </div>
     );
   }
